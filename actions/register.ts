@@ -2,7 +2,7 @@
 
 import bcrypt from 'bcryptjs';
 
-import { db } from '@/lib/db';
+import prisma from '@/lib/db';
 import { getUserByEmail } from '@/data/user';
 import { registerSchema, RegisterSchema } from '@/schemas';
 
@@ -22,7 +22,7 @@ export const register = async (value: RegisterSchema) => {
     return { error: 'Email already in use!' };
   }
 
-  await db.user.create({
+  await prisma.user.create({
     data: {
       name,
       email,
