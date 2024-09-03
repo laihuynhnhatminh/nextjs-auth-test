@@ -8,16 +8,16 @@ import {
 } from '@/routes/routes';
 
 export default auth((req) => {
-  // const { nextUrl } = req;
-  // const isLoggedIn = !!req.auth;
+  const { nextUrl } = req;
+  const isLoggedIn = !!req.auth;
 
-  // const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
-  // const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
-  // const isAuthRoute = authRoutes.includes(nextUrl.pathname);
+  const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
+  const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
+  const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
-  // if (isApiAuthRoute) {
-  //   return;
-  // }
+  if (isApiAuthRoute) {
+    return;
+  }
 
   // if (isAuthRoute) {
   //   if (isLoggedIn) {
@@ -26,9 +26,9 @@ export default auth((req) => {
   //   return;
   // }
 
-  // if (!isLoggedIn && !isPublicRoute) {
-  //   return Response.redirect(new URL(DEFAULT_UNAUTH_REDIRECT, nextUrl));
-  // }
+  if (!isLoggedIn && !isPublicRoute) {
+    return Response.redirect(new URL(DEFAULT_UNAUTH_REDIRECT, nextUrl));
+  }
 
   return;
 });
