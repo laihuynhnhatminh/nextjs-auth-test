@@ -7,10 +7,10 @@ import type { NextAuthConfig } from 'next-auth';
 import { loginSchema } from '@/schemas';
 import { getUserByEmail, getUserById } from './data/user';
 import { PrismaAdapter } from '@auth/prisma-adapter';
-import { db } from './lib/db';
+import prisma from './lib/db';
 
 export default {
-  adapter: PrismaAdapter(db),
+  adapter: PrismaAdapter(prisma),
   session: { strategy: 'jwt' },
   providers: [
     Google({

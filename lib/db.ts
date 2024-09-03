@@ -5,10 +5,10 @@ declare global {
 }
 
 if (process.env.CURRENT_ENV == 'production') {
-  const prisma = PrismaClient();
+  const prisma = new PrismaClient();
 } else {
   if (!global.prisma) {
-    global.prisma = PrismaClient();
+    global.prisma = new PrismaClient();
   }
   prisma = global.prisma;
 }
